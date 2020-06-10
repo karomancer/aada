@@ -1,0 +1,35 @@
+{
+  "name": "aada",
+  "version": "1.0.0",
+  "description": "Anxious-Avoidant trap exhibit",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "start:open": "webpack-dev-server --open",
+    "build": "webpack --mode=production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karomancer/aada.git"
+  },
+  "author": "@karomancer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/karomancer/aada/issues"
+  },
+  "homepage": "https://github.com/karomancer/aada#readme",
+  "dependencies": {
+    "@types/p5": "0.9.0",
+    "p5": "^1.0.0",
+    "three": "^0.117.1",
+    "webpack": "^4.43.0"
+  },
+  "devDependencies": {
+    "ts-loader": "^7.0.3",
+    "tslint": "^6.1.2",
+    "typescript": "^3.8.3",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0",
+    "webpack": "^4.43.0"
+  }
+}
