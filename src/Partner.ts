@@ -1,20 +1,23 @@
-import * as THREE from 'three'
+import * as three from 'three'
 import { State } from './types'
 
 
-export default class Marker {
-    public state: State
-    
-    marker: THREE.Mesh
+export default class Partner {
+    protected state: State
+    protected marker: three.Mesh
 
-    constructor(state: State, scene: THREE.Scene) {
+    constructor(state: State, scene: three.Scene) {
         this.state = state || State.LOADING
 
-        var geometry = new THREE.CylinderGeometry( 0.1, 0.1, 0.01, 32 );
-        var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+        var geometry = new three.CylinderGeometry( 0.1, 0.1, 0.01, 32 );
+        var material = new three.MeshBasicMaterial( {color: 0xffff00} );
         
-        this.marker = new THREE.Mesh( geometry, material );
-        this.marker.rotateX(THREE.MathUtils.degToRad(90))        
+        this.marker = new three.Mesh( geometry, material );
+        this.marker.rotateX(three.MathUtils.degToRad(90))        
+    }
+
+    public isSecure = (positionOfPartner: three.Vector3) => {
+        return true;
     }
 
     public updatePosition(x: number, y: number) {
@@ -26,17 +29,7 @@ export default class Marker {
         return this.marker
     }
 
-    private setState(state: State) {
-        switch (state) {
-            case State.INSECURE:
-                debugger
-                break;
-            case State.LOADING:
-                break;
-            case State.NEUTRAL:
-                break;
-            case State.SECURE:
-                break;
-        }
+    public setState(state: State) {
+        this.state = state
     }
 }

@@ -1,23 +1,24 @@
 import * as three from "three";
 
-import Partner from "./Partner";
+import AnxiousPartner from './AnxiousPartner'
+import AvoidantPartner from './AvoidantPartner'
 
 import { State } from './types'
 
 export default class Relationship {
-  scene: three.Scene;
-  camera: three.Camera;
-  renderer: three.WebGLRenderer;
-  mouse: three.Vector3
+  private scene: three.Scene;
+  private camera: three.Camera;
+  private renderer: three.WebGLRenderer;
+  private mouse: three.Vector3
 
-  AA: Partner
-  DA: Partner
+  private AA: AnxiousPartner
+  private DA: AvoidantPartner
 
   constructor() {
     this.setupScene()
 
-    this.AA = new Partner(State.LOADING, this.scene)
-    this.DA = new Partner(State.LOADING, this.scene)
+    this.AA = new AnxiousPartner(State.LOADING, this.scene)
+    this.DA = new AvoidantPartner(State.LOADING, this.scene)
 
     this.setupListeners()
   }
@@ -48,7 +49,16 @@ export default class Relationship {
         this.mouse.y = - ( clientY / window.innerHeight ) * 2 + 1;
         // mouse.unproject( camera );
         this.AA.updatePosition(this.mouse.x, this.mouse.y)
+        this.checkCloseness()
     })
+  }
+
+  private checkCloseness = () => {
+    const aaPosition = this.AA.getMarker().position
+    const daPosition = this.DA.getMarker().position
+
+    this.AA.setState(this.AA.isSecure(daPosition) ? State.SECURE : State.INSECURE)
+    this.DA.setState(this.DA.isSecure(aaPosition) ? State.SECURE : State.INSECURE)
   }
 
   private addMarkers = () => {

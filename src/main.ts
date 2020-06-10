@@ -9,5 +9,4 @@ var animate = function () {
     relationship.render()
 };
 
-
 animate()
