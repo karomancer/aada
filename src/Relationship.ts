@@ -1,9 +1,13 @@
 import * as three from "three";
+import { DragControls } from 'three/examples/jsm/controls/DragControls.js';
 
 import AnxiousPartner from './AnxiousPartner'
 import AvoidantPartner from './AvoidantPartner'
 
 import { State } from './types'
+import { normalizeCoord } from "./utils";
+
+const startingX = 0.3
 
 export default class Relationship {
   private scene: three.Scene;
@@ -16,11 +20,8 @@ export default class Relationship {
 
   constructor() {
     this.setupScene()
-
-    this.AA = new AnxiousPartner(State.LOADING, this.scene)
-    this.DA = new AvoidantPartner(State.LOADING, this.scene)
-
-    this.setupListeners()
+    this.setupPartners()
+    this.setupMovementSystem()
   }
 
   private setupScene = () => {
@@ -39,23 +40,29 @@ export default class Relationship {
     this.renderer.setSize( window.innerWidth, window.innerHeight );
     document.body.appendChild(this.renderer.domElement );
     
-    this.mouse = new three.Vector3( 0, 0, 0.5 );
+    this.scene.add(new three.AmbientLight(0xfff))
   }
 
-  private setupListeners = () => {
-    document.addEventListener('mousemove', (e: MouseEvent) => {
-        const {clientX, clientY}  = e
-        this.mouse.x = ( clientX / window.innerWidth ) * 2 - 1;
-        this.mouse.y = - ( clientY / window.innerHeight ) * 2 + 1;
-        // mouse.unproject( camera );
-        this.AA.updatePosition(this.mouse.x, this.mouse.y)
-        this.checkCloseness()
-    })
+  private setupPartners = () => {
+    this.AA = new AnxiousPartner(State.LOADING, this.scene)
+    const {x: aaX, y: aaY} = this.AA.getMarker().position
+    this.AA.updatePosition(aaX + startingX, aaY)
+
+    this.DA = new AvoidantPartner(State.LOADING, this.scene)
+    const {x: daX, y: daY} = this.DA.getMarker().position
+    this.DA.updatePosition(daX - startingX, daY)
+
+    // this.AA.getMarker().rotateZ(Math.PI * 1/2)
+  }
+
+  private setupMovementSystem = () => {
+    const controls = new DragControls([this.AA.getMarker(), this.DA.getMarker()], this.camera, this.renderer.domElement );
+    controls.addEventListener( 'drag', this.checkCloseness)
   }
 
   private checkCloseness = () => {
-    const aaPosition = this.AA.getMarker().position
-    const daPosition = this.DA.getMarker().position
+    const aaPosition = this.AA.getRing().position
+    const daPosition = this.DA.getRing().position
 
     this.AA.setState(this.AA.isSecure(daPosition) ? State.SECURE : State.INSECURE)
     this.DA.setState(this.DA.isSecure(aaPosition) ? State.SECURE : State.INSECURE)
