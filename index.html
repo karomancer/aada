@@ -1,17 +1,13 @@
 <html>
-  <head>
-    <title>My first three.js app</title>
-    <style>
-      body {
-        margin: 0;
-      }
-      canvas {
-        display: block;
-      }
-    </style>
-  </head>
-  <body>
-    <script id="vertexShader" type="x-shader/x-vertex">
+
+<head>
+  <title>My first three.js app</title>
+  <link rel="stylesheet" type="text/css" href="./src/styles.css">
+  </link>
+</head>
+
+<body>
+  <script id="vertexShader" type="x-shader/x-vertex">
       uniform vec3 viewVector;
       uniform float c;
       uniform float p;
@@ -26,8 +22,8 @@
       }
     </script>
 
-    <!-- fragment shader a.k.a. pixel shader -->
-    <script id="fragmentShader" type="x-shader/x-vertex">
+  <!-- fragment shader a.k.a. pixel shader -->
+  <script id="fragmentShader" type="x-shader/x-vertex">
       uniform vec3 glowColor;
       varying float intensity;
       void main()
@@ -36,6 +32,10 @@
       	gl_FragColor = vec4( glow, 1.0 );
       }
     </script>
-    <script src="dist/main.js"></script>
-  </body>
+  <!-- <video id="webcam" autoplay playsinline muted></video> -->
+  <div id="relationship">
+  </div>
+  <script src="dist/main.js"></script>
+</body>
+
 </html>

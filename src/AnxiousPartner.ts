@@ -3,16 +3,13 @@ import * as three from "three";
 import Partner from './Partner'
 
 import { State } from './types'
+import { Vector2 } from "three";
 
-const THRESHOLD = 0.2
+const THRESHOLD = 0.4
 
 export default class AnxiousPartner extends Partner {
     public isSecure = (positionOfPartner: THREE.Vector3) => {
-        const { x, y } = this.ring.position
-        console.log({x, partnerX: positionOfPartner.x})
-        console.log({y, partnerY: positionOfPartner.y})
-        return Math.abs(positionOfPartner.x - x) <= THRESHOLD
-            && Math.abs(positionOfPartner.y - y) <= THRESHOLD
+        return positionOfPartner.distanceTo(this.ring.position) < THRESHOLD
     }
 
     public setState(state: State) {

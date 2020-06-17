@@ -1,6 +1,5 @@
 import * as three from 'three'
 import { State } from './types'
-import { normalizeCoord } from './utils'
 
 const DIAMETER = 100
 
@@ -66,13 +65,13 @@ export default class Partner {
         }   );
     }
 
-    public isSecure = (positionOfPartner: three.Vector3) => {
+    public isSecure = (positionOfPartner: three.Vector3): boolean => {
         return true;
     }
 
     public updatePosition(x: number, y: number) {
-        this.marker.position.x = x
-        this.marker.position.y = y
+        this.ring.position.x = x
+        this.ring.position.y = y
     }
 
     public getMarker() {

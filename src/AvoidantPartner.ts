@@ -5,7 +5,7 @@ import Partner from './Partner'
 
 import { State } from './types'
 
-const THRESHOLD = 0.4
+const THRESHOLD = 0.8
 
 export default class AvoidantPartner extends Partner {
     private growWings = () => {
@@ -38,9 +38,7 @@ export default class AvoidantPartner extends Partner {
     }
 
     public isSecure = (positionOfPartner: THREE.Vector3) => {
-        const { x, y } = this.ring.position
-        return Math.abs(positionOfPartner.x - x) >= THRESHOLD
-            && Math.abs(positionOfPartner.y - y) >= THRESHOLD
+        return positionOfPartner.distanceTo(this.ring.position) > THRESHOLD
     }
 
     public setState(state: State) {

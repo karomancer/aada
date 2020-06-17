@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/karomancer/aada#readme",
   "dependencies": {
+    "@tensorflow-models/coco-ssd": "^2.0.3",
+    "@tensorflow/tfjs": "^2.0.1",
     "@types/p5": "0.9.0",
     "p5": "^1.0.0",
     "three": "^0.117.1",

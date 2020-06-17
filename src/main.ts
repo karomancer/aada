@@ -1,6 +1,7 @@
 import * as three from 'three'
 
 import Relationship from './Relationship'
+import PeopleTracker from './PeopleTracker'
 
 const relationship = new Relationship()
 
@@ -10,3 +11,5 @@ var animate = function () {
 };
 
 animate()
+
+// const peopleTracker = new PeopleTracker()

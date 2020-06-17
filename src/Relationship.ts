@@ -45,11 +45,11 @@ export default class Relationship {
 
   private setupPartners = () => {
     this.AA = new AnxiousPartner(State.LOADING, this.scene)
-    const {x: aaX, y: aaY} = this.AA.getMarker().position
+    const {x: aaX, y: aaY} = this.AA.getRing().position
     this.AA.updatePosition(aaX + startingX, aaY)
 
     this.DA = new AvoidantPartner(State.LOADING, this.scene)
-    const {x: daX, y: daY} = this.DA.getMarker().position
+    const {x: daX, y: daY} = this.DA.getRing().position
     this.DA.updatePosition(daX - startingX, daY)
 
     // this.AA.getMarker().rotateZ(Math.PI * 1/2)
@@ -60,7 +60,7 @@ export default class Relationship {
     controls.addEventListener( 'drag', this.checkCloseness)
   }
 
-  private checkCloseness = () => {
+  private checkCloseness = (someVar) => {
     const aaPosition = this.AA.getRing().position
     const daPosition = this.DA.getRing().position
 
