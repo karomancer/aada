@@ -5,7 +5,7 @@ import AnxiousPartner from './AnxiousPartner'
 import AvoidantPartner from './AvoidantPartner'
 
 import { State } from './types'
-import { normalizeCoord } from "./utils";
+import Partner from "./Partner";
 
 const startingX = 0.3
 
@@ -17,6 +17,7 @@ export default class Relationship {
 
   private AA: AnxiousPartner
   private DA: AvoidantPartner
+  private partners: Array<Partner>
 
   constructor() {
     this.setupScene()
@@ -46,13 +47,11 @@ export default class Relationship {
   private setupPartners = () => {
     this.AA = new AnxiousPartner(State.LOADING, this.scene)
     const {x: aaX, y: aaY} = this.AA.getRing().position
-    this.AA.updatePosition(aaX + startingX, aaY)
 
     this.DA = new AvoidantPartner(State.LOADING, this.scene)
     const {x: daX, y: daY} = this.DA.getRing().position
-    this.DA.updatePosition(daX - startingX, daY)
 
-    // this.AA.getMarker().rotateZ(Math.PI * 1/2)
+    this.partners = [this.AA, this.DA]
   }
 
   private setupMovementSystem = () => {
@@ -60,7 +59,7 @@ export default class Relationship {
     controls.addEventListener( 'drag', this.checkCloseness)
   }
 
-  private checkCloseness = (someVar) => {
+  private checkCloseness = () => {
     const aaPosition = this.AA.getRing().position
     const daPosition = this.DA.getRing().position
 
@@ -78,4 +77,10 @@ export default class Relationship {
       this.renderer.render(this.scene, this.camera)
   }
 
+  public updatePosition = (x: number, y: number, indexOfPartner: number) => {
+    if(this.partners[indexOfPartner]) {
+      this.partners[indexOfPartner].updatePosition(x, y)
+      this.checkCloseness()
+    }
+  }
 }

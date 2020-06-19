@@ -12,4 +12,8 @@ var animate = function () {
 
 animate()
 
-// const peopleTracker = new PeopleTracker()
+const setupPeopleTracker = () => {
+    const peopleTracker = new PeopleTracker(relationship.updatePosition)
+}
+
+setupPeopleTracker()

@@ -69,7 +69,7 @@ export default class Partner {
         return true;
     }
 
-    public updatePosition(x: number, y: number) {
+    public updatePosition = (x: number, y: number) => {
         this.ring.position.x = x
         this.ring.position.y = y
     }
