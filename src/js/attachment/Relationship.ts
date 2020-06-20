@@ -4,7 +4,7 @@ import { DragControls } from 'three/examples/jsm/controls/DragControls.js';
 import AnxiousPartner from './AnxiousPartner'
 import AvoidantPartner from './AvoidantPartner'
 
-import { State } from './types'
+import { State } from '../types'
 import Partner from "./Partner";
 
 const startingX = 0.3

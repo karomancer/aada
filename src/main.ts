@@ -1,7 +1,7 @@
 import * as three from 'three'
 
-import Relationship from './Relationship'
-import PeopleTracker from './PeopleTracker'
+import Relationship from './js/attachment/Relationship'
+import PeopleTracker from './js/PeopleTracker'
 
 const relationship = new Relationship()
 

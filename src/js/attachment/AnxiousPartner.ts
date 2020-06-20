@@ -2,7 +2,7 @@ import * as three from "three";
 
 import Partner from './Partner'
 
-import { State } from './types'
+import { State } from '../types'
 import { Vector2 } from "three";
 
 const THRESHOLD = 0.4

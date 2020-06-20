@@ -3,7 +3,7 @@ import * as OBJLoader from 'three-obj-loader';
 
 import Partner from './Partner'
 
-import { State } from './types'
+import { State } from '../types'
 
 const THRESHOLD = 0.8
 

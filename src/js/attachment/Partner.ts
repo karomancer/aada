@@ -1,5 +1,5 @@
 import * as three from 'three'
-import { State } from './types'
+import { State } from '../types'
 
 const DIAMETER = 100
 
