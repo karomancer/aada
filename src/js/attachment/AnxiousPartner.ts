@@ -2,7 +2,7 @@ import * as three from "three";
 
 import Partner from './Partner'
 
-import { State } from '../types'
+import { AttachmentType } from './types'
 import { Vector2 } from "three";
 
 const THRESHOLD = 0.4
@@ -12,17 +12,17 @@ export default class AnxiousPartner extends Partner {
         return positionOfPartner.distanceTo(this.ring.position) < THRESHOLD
     }
 
-    public setState(state: State) {
+    public setState(state: AttachmentType) {
         this.state = state
         switch (state) {
-            case State.INSECURE:
+            case AttachmentType.INSECURE:
                 // Bug in typescript type definitions
                 (this.ring.material as any).color.setHex(0xFF0000);
-            case State.LOADING:
+            case AttachmentType.LOADING:
                 break;
-            case State.NEUTRAL:
+            case AttachmentType.NEUTRAL:
                 break;
-            case State.SECURE:
+            case AttachmentType.SECURE:
                 (this.ring.material as any).color.setHex(0x59FF00);
                 break;
         }

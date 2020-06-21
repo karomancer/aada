@@ -1,16 +1,16 @@
 import * as three from 'three'
-import { State } from '../types'
+import { AttachmentType } from './types'
 
 const DIAMETER = 100
 
 
 export default class Partner {
-    protected state: State
+    protected state: AttachmentType
     protected ring: three.Mesh
     protected marker: three.Group
 
-    constructor(state: State, scene: three.Scene) {
-        this.state = state || State.LOADING
+    constructor(state: AttachmentType, scene: three.Scene) {
+        this.state = state || AttachmentType.LOADING
 
         const torus = new three.TorusGeometry(0.12, 0.014, 25, 25, Math.PI * 7/4);
         torus.rotateZ(Math.PI/8)
@@ -82,7 +82,7 @@ export default class Partner {
         return this.ring
     }
 
-    public setState(state: State) {
+    public setState(state: AttachmentType) {
         this.state = state
     }
 }

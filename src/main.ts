@@ -3,17 +3,17 @@ import * as three from 'three'
 import Relationship from './js/attachment/Relationship'
 import PeopleTracker from './js/PeopleTracker'
 
-const relationship = new Relationship()
+// const relationship = new Relationship()
 
-var animate = function () {
-    requestAnimationFrame( animate );
-    relationship.render()
-};
+// var animate = function () {
+//     requestAnimationFrame( animate );
+//     relationship.render()
+// };
 
-animate()
+// animate()
 
-const setupPeopleTracker = () => {
-    const peopleTracker = new PeopleTracker(relationship.updatePosition)
-}
+// const setupPeopleTracker = () => {
+//     const peopleTracker = new PeopleTracker(relationship.updatePosition)
+// }
 
-setupPeopleTracker()
+// setupPeopleTracker()
