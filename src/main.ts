@@ -1,19 +1,7 @@
 import * as three from 'three'
 
-import Relationship from './js/attachment/Relationship'
-import PeopleTracker from './js/PeopleTracker'
+import StateManager from './js/game/StateManager'
 
-// const relationship = new Relationship()
+const stateManager = new StateManager()
+stateManager.start()
 
-// var animate = function () {
-//     requestAnimationFrame( animate );
-//     relationship.render()
-// };
-
-// animate()
-
-// const setupPeopleTracker = () => {
-//     const peopleTracker = new PeopleTracker(relationship.updatePosition)
-// }
-
-// setupPeopleTracker()
